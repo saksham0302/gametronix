@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Gametronix"
         tools:targetApi="31">
         <activity
-            android:name=".HomeScreen"
+            android:name=".NavigationDrawer"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
