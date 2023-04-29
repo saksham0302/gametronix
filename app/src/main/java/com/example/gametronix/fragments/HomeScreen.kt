@@ -1,5 +1,6 @@
 package com.example.gametronix.fragments
 
+import android.app.LauncherActivity.ListItem
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -7,18 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gametronix.Product
 import com.example.gametronix.R
+import com.example.gametronix.adapters.CategoryAdapter
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStreamReader
 
 class HomeScreen : Fragment() {
 
-    lateinit var v: View
+    private lateinit var v: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_home_screen, container, false)
+
         bannerChange(v)
+
+        displayProductCategory("headset", R.id.headsetRecycler, R.drawable.headset)
+        displayProductCategory("keyboard", R.id.keyboardRecycler, R.drawable.keyboard)
+        displayProductCategory("mouse", R.id.mouseRecycler, R.drawable.mouse)
+        displayProductCategory("mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
+
         // Inflate the layout for this fragment
         return v
     }
@@ -45,5 +60,32 @@ class HomeScreen : Fragment() {
             }
         }
         handler.post(run)
+    }
+
+
+
+    private val fileName = "ProductData.txt"
+
+    private fun displayProductCategory(category: String, recyclerId: Int, srcId: Int) {
+
+        val fin = requireContext().openFileInput(fileName)
+        val bufferedReader = BufferedReader(InputStreamReader(fin))
+        val product = ArrayList<Product>()
+
+        bufferedReader.forEachLine { line ->
+            val textBeforeHash = line.substringBefore("##")
+            if ( textBeforeHash == category) {
+                val arr = line.split("##")
+                val listItem = Product(arr[0], arr[1], arr[2], arr[3], arr[4], srcId)
+                product.add(listItem)
+            }
+        }
+        bufferedReader.close()
+        fin.close()
+
+        val prod = v.findViewById<View>(recyclerId) as RecyclerView
+        prod.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        prod.adapter = CategoryAdapter(product)
+
     }
 }

@@ -29,11 +29,10 @@
                 android:layout_margin="5dp"
                 android:textSize="20sp"/>
 
-            <ImageView
-                android:layout_margin="5dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/headset"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/headsetRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -50,11 +49,10 @@
                 android:layout_margin="5dp"
                 android:textSize="20sp"/>
 
-            <ImageView
-                android:layout_margin="5dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/keyboard"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/keyboardRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -71,11 +69,10 @@
                 android:layout_margin="5dp"
                 android:textSize="20sp"/>
 
-            <ImageView
-                android:layout_margin="5dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/mouse"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mouseRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -92,11 +89,10 @@
                 android:layout_margin="5dp"
                 android:textSize="20sp"/>
 
-            <ImageView
-                android:layout_margin="5dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/mouse_pad"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mousePadRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

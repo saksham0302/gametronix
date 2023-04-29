@@ -12,6 +12,11 @@
         android:theme="@style/Theme.Gametronix"
         tools:targetApi="31">
         <activity
+            android:name=".AddData"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".NavigationDrawer"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
