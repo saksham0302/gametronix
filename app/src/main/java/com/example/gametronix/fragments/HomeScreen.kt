@@ -1,6 +1,5 @@
 package com.example.gametronix.fragments
 
-import android.app.LauncherActivity.ListItem
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -14,7 +13,6 @@ import com.example.gametronix.Product
 import com.example.gametronix.R
 import com.example.gametronix.adapters.CategoryAdapter
 import java.io.BufferedReader
-import java.io.File
 import java.io.InputStreamReader
 
 class HomeScreen : Fragment() {

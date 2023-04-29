@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,66 +7,54 @@
     android:orientation="vertical"
     tools:context=".AddData">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:hint="Category"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/purple_200"
-            android:hint="Category"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Title"
-            android:textColor="@color/teal_200"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Name"
+        android:scrollHorizontally="false"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Product Name"
-            android:scrollHorizontally="false"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Price"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Price"
-            android:textColor="@color/teal_200"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Desciption"
+        android:textSize="20sp"
+        android:scrollHorizontally="false"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Desciption"
-            android:textColor="@color/purple_200"
-            android:scrollHorizontally="false"
-            android:textSize="20sp" />
+    <Button
+        android:id="@+id/add"
+        android:text="Add"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
