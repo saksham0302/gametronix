@@ -57,8 +57,9 @@ class NavigationDrawer : AppCompatActivity(),
         actionBarDrawerToggle.syncState()
 
         if (savedInstanceState == null) {
+            val user = intent.getStringExtra("userName").toString()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeScreen()).commit()
+                .replace(R.id.fragment_container, HomeScreen(user)).commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
     }
@@ -73,8 +74,11 @@ class NavigationDrawer : AppCompatActivity(),
             if (navigationView.menu.findItem(R.id.nav_home).isChecked)
                 super.onBackPressed()
             else {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                val user = intent.getStringExtra("userName").toString()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeScreen())
+                    .replace(R.id.fragment_container, HomeScreen(user))
                     .commit()
                 navigationView.setCheckedItem(R.id.nav_home)
             }
@@ -99,7 +103,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeScreen())
+                    .replace(R.id.fragment_container, HomeScreen(user))
                     .commit()
             }
 
@@ -107,7 +111,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay(""))
+                    .replace(R.id.fragment_container, SearchDisplay(user,""))
                     .commit()
             }
 
@@ -133,7 +137,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay("headset"))
+                    .replace(R.id.fragment_container, SearchDisplay(user, "headset"))
                     .commit()
             }
 
@@ -141,7 +145,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay("mouse"))
+                    .replace(R.id.fragment_container, SearchDisplay(user, "mouse"))
                     .commit()
             }
 
@@ -149,7 +153,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay("keyboard"))
+                    .replace(R.id.fragment_container, SearchDisplay(user, "keyboard"))
                     .commit()
             }
 
@@ -157,7 +161,7 @@ class NavigationDrawer : AppCompatActivity(),
                 showSearch = findViewById(R.id.showSearch)
                 showSearch.visibility = View.VISIBLE
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay("mousepad"))
+                    .replace(R.id.fragment_container, SearchDisplay(user, "mousepad"))
                     .commit()
             }
         }
@@ -185,6 +189,8 @@ class NavigationDrawer : AppCompatActivity(),
 
     private fun search() {
 
+        val user = intent.getStringExtra("userName").toString()
+
         searchText = findViewById(R.id.search)
         searchButton = findViewById(R.id.searchButton)
 
@@ -199,7 +205,7 @@ class NavigationDrawer : AppCompatActivity(),
                 Toast.makeText(this, "Search string is empty", Toast.LENGTH_SHORT).show()
             else {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SearchDisplay(text))
+                    .replace(R.id.fragment_container, SearchDisplay(user, text))
                     .commit()
                 searchText.text.clear()
                 navigationView.setCheckedItem(R.id.nav_search)

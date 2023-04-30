@@ -11,7 +11,7 @@ import com.example.gametronix.Product
 import com.example.gametronix.R
 import com.example.gametronix.databinding.SearchRecyclerBinding
 
-class SearchAdapter(val context: Context, private val searchList: ArrayList<Product>):
+class SearchAdapter(val user: String, val context: Context, private val searchList: ArrayList<Product>):
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -45,6 +45,7 @@ class SearchAdapter(val context: Context, private val searchList: ArrayList<Prod
             intent.putExtra("productName", currentProduct.productName)
             intent.putExtra("price", currentProduct.productPrice)
             intent.putExtra("description", currentProduct.productDescription)
+            intent.putExtra("user", user)
             context.startActivity(intent)
         }
     }

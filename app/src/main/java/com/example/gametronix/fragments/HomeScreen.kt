@@ -8,15 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gametronix.Product
 import com.example.gametronix.R
 import com.example.gametronix.adapters.CategoryAdapter
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 
-class HomeScreen : Fragment() {
+class HomeScreen(val user: String) : Fragment() {
 
     private lateinit var v: View
 
@@ -30,10 +32,10 @@ class HomeScreen : Fragment() {
 
         bannerChange(v)
 
-        displayProductCategory(con,"headset", R.id.headsetRecycler, R.drawable.headset)
-        displayProductCategory(con,"keyboard", R.id.keyboardRecycler, R.drawable.keyboard)
-        displayProductCategory(con,"mouse", R.id.mouseRecycler, R.drawable.mouse)
-        displayProductCategory(con,"mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
+        displayProductCategory(user, con,"headset", R.id.headsetRecycler, R.drawable.headset)
+        displayProductCategory(user, con,"keyboard", R.id.keyboardRecycler, R.drawable.keyboard)
+        displayProductCategory(user, con,"mouse", R.id.mouseRecycler, R.drawable.mouse)
+        displayProductCategory(user, con,"mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
 
 
 
@@ -69,26 +71,30 @@ class HomeScreen : Fragment() {
 
     private val fileName = "ProductData.txt"
 
-    private fun displayProductCategory(con: Context, category: String, recyclerId: Int, srcId: Int) {
+    private fun displayProductCategory(user:String, con: Context, category: String, recyclerId: Int, srcId: Int) {
 
-        val fin = requireContext().openFileInput(fileName)
-        val bufferedReader = BufferedReader(InputStreamReader(fin))
-        val product = ArrayList<Product>()
+        try {
+            val fin = requireContext().openFileInput(fileName)
+            val bufferedReader = BufferedReader(InputStreamReader(fin))
+            val product = ArrayList<Product>()
 
-        bufferedReader.forEachLine { line ->
-            val textBeforeHash = line.substringBefore("##")
-            if ( textBeforeHash == category) {
-                val arr = line.split("##")
-                val listItem = Product(arr[0], arr[1], arr[2], arr[3], arr[4], srcId)
-                product.add(listItem)
+            bufferedReader.forEachLine { line ->
+                val textBeforeHash = line.substringBefore("##")
+                if (textBeforeHash == category) {
+                    val arr = line.split("##")
+                    val listItem = Product(arr[0], arr[1], arr[2], arr[3], arr[4], srcId)
+                    product.add(listItem)
+                }
             }
+            bufferedReader.close()
+            fin.close()
+
+            val prod = v.findViewById<View>(recyclerId) as RecyclerView
+            prod.layoutManager = LinearLayoutManager(con, LinearLayoutManager.HORIZONTAL, false)
+            prod.adapter = CategoryAdapter(user, con, product)
+
+        } catch (to: IOException) {
+            Toast.makeText(con, "Data not received!", Toast.LENGTH_SHORT).show()
         }
-        bufferedReader.close()
-        fin.close()
-
-        val prod = v.findViewById<View>(recyclerId) as RecyclerView
-        prod.layoutManager = LinearLayoutManager(con, LinearLayoutManager.HORIZONTAL, false)
-        prod.adapter = CategoryAdapter(con, product)
-
     }
 }

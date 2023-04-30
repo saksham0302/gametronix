@@ -11,7 +11,7 @@ import com.example.gametronix.Product
 import com.example.gametronix.R
 import com.example.gametronix.databinding.CategoryRecyclerBinding
 
-class CategoryAdapter(val context: Context, private val categoryList: ArrayList<Product>):
+class CategoryAdapter(val user: String, val context: Context, private val categoryList: ArrayList<Product>):
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
         class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -43,6 +43,7 @@ class CategoryAdapter(val context: Context, private val categoryList: ArrayList<
             intent.putExtra("productName", currentProduct.productName)
             intent.putExtra("price", currentProduct.productPrice)
             intent.putExtra("description", currentProduct.productDescription)
+            intent.putExtra("user", user)
             context.startActivity(intent)
         }
     }

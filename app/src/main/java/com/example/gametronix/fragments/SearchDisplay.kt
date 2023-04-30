@@ -15,7 +15,7 @@ import com.example.gametronix.adapters.SearchAdapter
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class SearchDisplay(var search: String) : Fragment() {
+class SearchDisplay(val user: String, private var search: String) : Fragment() {
 
     lateinit var v: View
     lateinit var searchResult: TextView
@@ -69,7 +69,7 @@ class SearchDisplay(var search: String) : Fragment() {
 
         val prod = v.findViewById<View>(R.id.searchRecycler) as RecyclerView
         prod.layoutManager = LinearLayoutManager(con, LinearLayoutManager.VERTICAL, false)
-        prod.adapter = SearchAdapter(con, product)
+        prod.adapter = SearchAdapter(user, con, product)
 
         // Inflate the layout for this fragment
         return v

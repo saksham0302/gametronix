@@ -58,7 +58,7 @@ class AddData : AppCompatActivity() {
                     fout.write(productData.toByteArray())
                     fout.close()
 
-                    Toast.makeText(this, "Visitor Added", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Product Added", Toast.LENGTH_LONG).show()
                 } catch (to: IOException) { }
 
                 category.text.clear()
