@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 
 class DisplayProduct : AppCompatActivity() {
 
@@ -17,6 +18,9 @@ class DisplayProduct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_product)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         brand = findViewById(R.id.Brand)
         image = findViewById(R.id.image)
         productName = findViewById(R.id.ProductName)
@@ -29,6 +33,6 @@ class DisplayProduct : AppCompatActivity() {
         productName.text = intent.getStringExtra("productName")
         price.text = intent.getStringExtra("price")
         val desc = intent.getStringExtra("description")
-        description.text = desc?.replace("#", "\n")
+        description.text = desc?.replace("#", "\n\n")
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gametronix.Product
@@ -36,6 +37,8 @@ class SearchDisplay(var search: String) : Fragment() {
         val bufferedReader = BufferedReader(InputStreamReader(fin))
         val product = ArrayList<Product>()
 
+        var toastDisplay = 0
+
         bufferedReader.forEachLine { line ->
             val arr = line.split("##")
 
@@ -53,8 +56,14 @@ class SearchDisplay(var search: String) : Fragment() {
                 }
                 val listItem = Product(arr[0], arr[1], arr[2], arr[3], arr[4], srcId)
                 product.add(listItem)
+
+                toastDisplay += 1
             }
         }
+
+        if (toastDisplay < 1)
+            Toast.makeText(con, "Product not found!!!", Toast.LENGTH_LONG).show()
+
         bufferedReader.close()
         fin.close()
 

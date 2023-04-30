@@ -9,6 +9,7 @@
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="8dp"
     android:layout_margin="5dp"
+    card_view:cardBackgroundColor="#93C572"
     android:clickable="true" >
 
     <LinearLayout
@@ -27,6 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#003153"
             android:hint="Product Title"/>
 
     </LinearLayout>

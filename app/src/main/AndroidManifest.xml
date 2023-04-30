@@ -14,7 +14,7 @@
         <activity
             android:name=".DisplayProduct"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.DayNight"/>
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
         <activity
             android:name=".AddData"
             android:exported="false" />

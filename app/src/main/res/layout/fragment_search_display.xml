@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:hint="Search Result"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="15dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecycler"

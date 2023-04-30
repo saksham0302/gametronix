@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Gametronix</string>
+    <string name="app_name">
+        <font color = "#003153">
+            <b><i>Gametronix</i></b>
+        </font></string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->

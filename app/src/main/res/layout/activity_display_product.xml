@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/background"
     tools:context=".DisplayProduct">
 
     <LinearLayout
@@ -11,60 +12,83 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#CCCCFF"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
         <TextView
             android:id="@+id/Brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="20dp"
             android:hint="Brand"
-            android:textSize="30sp" />
+            android:textColor="#003153"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginVertical="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="15dp" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/ProductName"
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="15dp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Product Name"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/Price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Price"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="30dp"/>
+                    <TextView
+                        android:id="@+id/ProductName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Product Name"
+                        android:textColor="#003153"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:hint="Price"
+                        android:textColor="#003153"
+                        android:textSize="30sp"
+                        android:textStyle="bold|italic" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="About the product"
-            android:textSize="20sp" />
+            android:textColor="#003153"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/Description"
@@ -72,8 +96,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
-            android:textSize="20sp"
-            android:hint="Description" />
+            android:hint="Description"
+            android:textColor="#C04000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

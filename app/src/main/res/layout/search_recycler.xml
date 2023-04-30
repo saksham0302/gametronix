@@ -9,6 +9,7 @@
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="8dp"
     android:layout_margin="5dp"
+    card_view:cardBackgroundColor="#93C572"
     android:clickable="true" >
 
     <LinearLayout
@@ -32,6 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textColor="#003153"
+                android:textStyle="bold"
                 android:hint="Title"/>
 
             <TextView
@@ -39,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textColor="#003153"
                 android:hint="Name"/>
 
             <TextView
@@ -46,6 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textColor="#003153"
+                android:textStyle="italic"
                 android:hint="Price"/>
 
         </LinearLayout>
