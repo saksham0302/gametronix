@@ -58,7 +58,7 @@ class DisplayProduct : AppCompatActivity() {
                 val fout = openFileOutput(user + "Cart.txt", Context.MODE_APPEND)
                 fout.write(data.toByteArray())
                 fout.close()
-                Toast.makeText(this, "Added to cart", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show()
 
             } catch (to: IOException) { }
         }
@@ -75,7 +75,7 @@ class DisplayProduct : AppCompatActivity() {
                 val fout = openFileOutput(user + "Wishlist.txt", Context.MODE_APPEND)
                 fout.write(data.toByteArray())
                 fout.close()
-                Toast.makeText(this, "Added to wishlist", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Added to wishlist", Toast.LENGTH_SHORT).show()
 
             } catch (to: IOException) { }
         }
