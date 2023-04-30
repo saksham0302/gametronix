@@ -1,5 +1,6 @@
 package com.example.gametronix.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -25,12 +26,14 @@ class HomeScreen : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_home_screen, container, false)
 
+        val con = v.context
+
         bannerChange(v)
 
-        displayProductCategory("headset", R.id.headsetRecycler, R.drawable.headset)
-        displayProductCategory("keyboard", R.id.keyboardRecycler, R.drawable.keyboard)
-        displayProductCategory("mouse", R.id.mouseRecycler, R.drawable.mouse)
-        displayProductCategory("mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
+        displayProductCategory(con,"headset", R.id.headsetRecycler, R.drawable.headset)
+        displayProductCategory(con,"keyboard", R.id.keyboardRecycler, R.drawable.keyboard)
+        displayProductCategory(con,"mouse", R.id.mouseRecycler, R.drawable.mouse)
+        displayProductCategory(con,"mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
 
 
 
@@ -66,7 +69,7 @@ class HomeScreen : Fragment() {
 
     private val fileName = "ProductData.txt"
 
-    private fun displayProductCategory(category: String, recyclerId: Int, srcId: Int) {
+    private fun displayProductCategory(con: Context, category: String, recyclerId: Int, srcId: Int) {
 
         val fin = requireContext().openFileInput(fileName)
         val bufferedReader = BufferedReader(InputStreamReader(fin))
@@ -84,8 +87,8 @@ class HomeScreen : Fragment() {
         fin.close()
 
         val prod = v.findViewById<View>(recyclerId) as RecyclerView
-        prod.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        prod.adapter = CategoryAdapter(product)
+        prod.layoutManager = LinearLayoutManager(con, LinearLayoutManager.HORIZONTAL, false)
+        prod.adapter = CategoryAdapter(con, product)
 
     }
 }

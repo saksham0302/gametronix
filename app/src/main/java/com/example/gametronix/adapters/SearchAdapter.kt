@@ -1,14 +1,17 @@
 package com.example.gametronix.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gametronix.DisplayProduct
 import com.example.gametronix.Product
 import com.example.gametronix.R
 import com.example.gametronix.databinding.SearchRecyclerBinding
 
-class SearchAdapter(private val searchList: ArrayList<Product>):
+class SearchAdapter(val context: Context, private val searchList: ArrayList<Product>):
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -17,7 +20,7 @@ class SearchAdapter(private val searchList: ArrayList<Product>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
 
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.search_recycler, parent, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.search_recycler, parent, false)
         return SearchViewHolder(view)
     }
 
@@ -33,5 +36,16 @@ class SearchAdapter(private val searchList: ArrayList<Product>):
         holder.binding.title.text = currentProduct.productTitle
         holder.binding.name.text = currentProduct.productName
         holder.binding.price.text = currentProduct.productPrice
+
+        holder.binding.cardView.setOnClickListener {
+
+            val intent = Intent(context, DisplayProduct::class.java)
+            intent.putExtra("brand", currentProduct.productTitle)
+            intent.putExtra("image", currentProduct.productImage)
+            intent.putExtra("productName", currentProduct.productName)
+            intent.putExtra("price", currentProduct.productPrice)
+            intent.putExtra("description", currentProduct.productDescription)
+            context.startActivity(intent)
+        }
     }
 }

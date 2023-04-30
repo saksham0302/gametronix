@@ -26,6 +26,8 @@ class SearchDisplay(var search: String) : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_search_display, container, false)
 
+        val con = v.context
+
         searchResult = v.findViewById(R.id.searchResult)
         searchResult.text = ""
         searchResult.text = "Showing results for \"${search}\""
@@ -57,8 +59,8 @@ class SearchDisplay(var search: String) : Fragment() {
         fin.close()
 
         val prod = v.findViewById<View>(R.id.searchRecycler) as RecyclerView
-        prod.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        prod.adapter = SearchAdapter(product)
+        prod.layoutManager = LinearLayoutManager(con, LinearLayoutManager.VERTICAL, false)
+        prod.adapter = SearchAdapter(con, product)
 
         // Inflate the layout for this fragment
         return v
