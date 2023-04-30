@@ -31,5 +31,7 @@ class CategoryAdapter(private val categoryList: ArrayList<Product>):
 
         holder.binding.productTitle.text = currentProduct.productTitle
         holder.binding.categoryImage.setImageResource(currentProduct.productImage)
+
+
     }
 }

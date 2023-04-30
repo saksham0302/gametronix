@@ -3,6 +3,9 @@ package com.example.gametronix
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -16,11 +19,19 @@ class NavigationDrawer : AppCompatActivity(),
     //Navigation Drawer
     private lateinit var drawer: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private lateinit var searchText: EditText
+    private lateinit var searchButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
 
+        search()
+
+        navigation(savedInstanceState)
+    }
+
+    private fun navigation(savedInstanceState: Bundle?) {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -47,7 +58,17 @@ class NavigationDrawer : AppCompatActivity(),
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+
+            if (navigationView.menu.findItem(R.id.nav_home).isChecked)
+                super.onBackPressed()
+            else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, HomeScreen())
+                    .commit()
+                navigationView.setCheckedItem(R.id.nav_home)
+            }
         }
     }
 
@@ -62,6 +83,10 @@ class NavigationDrawer : AppCompatActivity(),
                 .replace(R.id.fragment_container, HomeScreen())
                 .commit()
 
+            R.id.nav_search -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SearchDisplay(""))
+                .commit()
+
             R.id.nav_log_out -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeScreen())
                 .commit()
@@ -74,24 +99,49 @@ class NavigationDrawer : AppCompatActivity(),
                 .replace(R.id.fragment_container, MyWishlist())
                 .commit()
 
-            R.id.nav_headset -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, Headset())
+            R.id.nav_headset ->
+                supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SearchDisplay("headset"))
                 .commit()
 
             R.id.nav_mouse -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, Mouse())
+                .replace(R.id.fragment_container, SearchDisplay("mouse"))
                 .commit()
 
             R.id.nav_keyboard -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, Keyboard())
+                .replace(R.id.fragment_container, SearchDisplay("keyboard"))
                 .commit()
 
             R.id.nav_mouse_pad -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MousePad())
+                .replace(R.id.fragment_container, SearchDisplay("mousepad"))
                 .commit()
         }
 
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun search() {
+
+        searchText = findViewById(R.id.search)
+        searchButton = findViewById(R.id.searchButton)
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        searchButton.setOnClickListener {
+
+            val text = searchText.text.toString()
+
+            if (text.isEmpty())
+                Toast.makeText(this, "Search string is empty", Toast.LENGTH_SHORT).show()
+            else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay(text))
+                    .commit()
+                searchText.text.clear()
+                navigationView.setCheckedItem(R.id.nav_search)
+            }
+        }
     }
 }

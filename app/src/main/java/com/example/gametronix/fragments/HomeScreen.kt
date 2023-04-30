@@ -32,6 +32,8 @@ class HomeScreen : Fragment() {
         displayProductCategory("mouse", R.id.mouseRecycler, R.drawable.mouse)
         displayProductCategory("mousepad", R.id.mousePadRecycler, R.drawable.mouse_pad)
 
+
+
         // Inflate the layout for this fragment
         return v
     }
