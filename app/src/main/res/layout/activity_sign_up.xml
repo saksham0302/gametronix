@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".LoginPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:textColor="#003153"
+            android:layout_marginBottom="30dp"/>
+
+        <EditText
+            android:id="@+id/newUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/input_bg"
+            android:drawableStart="@drawable/ic_person"
+            android:ems="10"
+            android:hint="Enter new user name"
+            android:inputType="text"
+            android:textSize="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp"/>
+
+        <EditText
+            android:id="@+id/newPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_bg"
+            android:drawableStart="@drawable/ic_security"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:textSize="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp" />
+
+        <EditText
+            android:id="@+id/retypePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_bg"
+            android:drawableStart="@drawable/ic_security"
+            android:hint="Enter password again"
+            android:inputType="textPassword"
+            android:textSize="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/custom_button"
+            android:text="Create"
+            android:textColor="#003153"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

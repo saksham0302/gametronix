@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">
-        <font color = "#003153">
+        <font color="#003153">
             <b><i>Gametronix</i></b>
         </font></string>
     <string name="navigation_drawer_open">Open</string>
