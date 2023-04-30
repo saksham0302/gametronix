@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.gametronix.R
 
-class MyCart : Fragment() {
+class MyCart(val user: String) : Fragment() {
 
     lateinit var v: View
 

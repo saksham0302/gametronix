@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.gametronix.R
 
-class MyWishlist : Fragment() {
+class MyWishlist(val user: String) : Fragment() {
 
     lateinit var v: View
 

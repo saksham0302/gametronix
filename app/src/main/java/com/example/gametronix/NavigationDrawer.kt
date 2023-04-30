@@ -1,13 +1,17 @@
 package com.example.gametronix
 
+import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.gametronix.fragments.*
@@ -21,10 +25,15 @@ class NavigationDrawer : AppCompatActivity(),
     private lateinit var navigationView: NavigationView
     private lateinit var searchText: EditText
     private lateinit var searchButton: ImageButton
+    private lateinit var showSearch: ConstraintLayout
+
+    private lateinit var intent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
+
+        intent = getIntent()
 
         search()
 
@@ -73,52 +82,105 @@ class NavigationDrawer : AppCompatActivity(),
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
+        val user = intent.getStringExtra("userName").toString()
+
         when (item.itemId) {
 
-            R.id.nav_profile -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, Profile())
-                .commit()
-
-            R.id.nav_home -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeScreen())
-                .commit()
-
-            R.id.nav_search -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SearchDisplay(""))
-                .commit()
-
-            R.id.nav_log_out -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeScreen())
-                .commit()
-
-            R.id.nav_my_cart -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MyCart())
-                .commit()
-
-            R.id.nav_my_wishlist -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MyWishlist())
-                .commit()
-
-            R.id.nav_headset ->
+            R.id.nav_profile -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.GONE
                 supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SearchDisplay("headset"))
+                .replace(R.id.fragment_container, Profile(user))
                 .commit()
+            }
 
-            R.id.nav_mouse -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SearchDisplay("mouse"))
-                .commit()
+            R.id.nav_home -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, HomeScreen())
+                    .commit()
+            }
 
-            R.id.nav_keyboard -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SearchDisplay("keyboard"))
-                .commit()
+            R.id.nav_search -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay(""))
+                    .commit()
+            }
 
-            R.id.nav_mouse_pad -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SearchDisplay("mousepad"))
-                .commit()
+            R.id.nav_log_out -> logOut()
+
+            R.id.nav_my_cart -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.GONE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, MyCart(user))
+                    .commit()
+            }
+
+            R.id.nav_my_wishlist -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.GONE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, MyWishlist(user))
+                    .commit()
+            }
+
+            R.id.nav_headset -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay("headset"))
+                    .commit()
+            }
+
+            R.id.nav_mouse -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay("mouse"))
+                    .commit()
+            }
+
+            R.id.nav_keyboard -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay("keyboard"))
+                    .commit()
+            }
+
+            R.id.nav_mouse_pad -> {
+                showSearch = findViewById(R.id.showSearch)
+                showSearch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SearchDisplay("mousepad"))
+                    .commit()
+            }
         }
 
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun logOut() {
+        val alertDialog = AlertDialog.Builder(this).create()
+        alertDialog.setTitle("Log Out")
+        alertDialog.setMessage("Are you sure, you want to log out?")
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"
+        ) { dialog, which ->
+            val intent = Intent(this, LoginPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No"
+        ) { dialog, which -> dialog.dismiss() }
+        alertDialog.show()
     }
 
     private fun search() {
@@ -144,4 +206,5 @@ class NavigationDrawer : AppCompatActivity(),
             }
         }
     }
+
 }

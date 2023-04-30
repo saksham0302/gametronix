@@ -21,11 +21,6 @@
             android:title="Search" />
 
         <item
-            android:id="@+id/nav_log_out"
-            android:icon="@drawable/ic_logout"
-            android:title="Log Out" />
-
-        <item
             android:id="@+id/nav_my_cart"
             android:icon="@drawable/ic_cart"
             android:title="My Cart" />
@@ -34,6 +29,11 @@
             android:id="@+id/nav_my_wishlist"
             android:icon="@drawable/ic_wish_list"
             android:title="My Wishlist" />
+
+        <item
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_logout"
+            android:title="Log Out" />
 
         <item android:title="Categories">
 

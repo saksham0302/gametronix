@@ -25,6 +25,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/showSearch"
             android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
