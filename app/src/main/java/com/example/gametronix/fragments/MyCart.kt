@@ -106,14 +106,12 @@ class MyCart(val user: String) : Fragment() {
         val file = File(con.filesDir, user + "Cart.txt")
         try {
             file.delete()
-            println("Deletion succeeded.")
         } catch (e: IOException) {
-            println("Deletion failed.")
             e.printStackTrace()
         }
 
         val intent = Intent(con, NavigationDrawer::class.java)
+        intent.putExtra("userName", user)
         startActivity(intent)
     }
-
 }

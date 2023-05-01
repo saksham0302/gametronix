@@ -43,27 +43,30 @@ class SignUp : AppCompatActivity() {
                 Toast.makeText(this, "Passwords does not match", Toast.LENGTH_SHORT).show()
                 retypePassword.text.clear()
                 newPassword.text.clear()
-            }
-
-            val filename = newUserName.text.toString()
-            val f = File("/data/data/" + getPackageName() +  "/shared_prefs/" + filename + ".xml")
-
-            if (f.exists()) {
-                Toast.makeText(this, "Username already taken. Enter new user name"
-                    , Toast.LENGTH_SHORT).show()
-                newUserName.text.clear()
             } else {
-                sharedPrefs = getSharedPreferences(filename, Context.MODE_PRIVATE)
-                val edit = sharedPrefs.edit()
-                edit.putString("userName", newUserName.text.toString())
-                edit.putString("password", newPassword.text.toString())
-                edit.putString("userDataFile", newUserName.text.toString()+"Data")
-                edit.apply()
 
-                Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, LoginPage::class.java)
-                startActivity(i)
-                finish()
+                val filename = newUserName.text.toString()
+                val f =
+                    File("/data/data/" + getPackageName() + "/shared_prefs/" + filename + ".xml")
+
+                if (f.exists()) {
+                    Toast.makeText(
+                        this, "Username already taken. Enter new user name", Toast.LENGTH_SHORT
+                    ).show()
+                    newUserName.text.clear()
+                } else {
+                    sharedPrefs = getSharedPreferences(filename, Context.MODE_PRIVATE)
+                    val edit = sharedPrefs.edit()
+                    edit.putString("userName", newUserName.text.toString())
+                    edit.putString("password", newPassword.text.toString())
+                    edit.putString("userDataFile", newUserName.text.toString() + "Data")
+                    edit.apply()
+
+                    Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
+                    val i = Intent(this, LoginPage::class.java)
+                    startActivity(i)
+                    finish()
+                }
             }
         }
     }

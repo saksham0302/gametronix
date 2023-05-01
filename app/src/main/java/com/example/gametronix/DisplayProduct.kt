@@ -52,7 +52,7 @@ class DisplayProduct : AppCompatActivity() {
                     intent.getIntExtra("image", 0) + "##" +
                     intent.getStringExtra("productName") + "##" +
                     intent.getStringExtra("price") + "##" +
-                    intent.getStringExtra("description") + "\n"
+                    intent.getStringExtra("descriptvityion") + "\n"
 
             try {
                 val fout = openFileOutput(user + "Cart.txt", Context.MODE_APPEND)
