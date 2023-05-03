@@ -50,7 +50,7 @@ class AddData : AppCompatActivity() {
                 productData += price.text.toString()
                 productData += "##"
                 productData += description.text.toString()
-                productData += "##"
+                productData += "\n"
 
 
                 try {
